@@ -1,4 +1,4 @@
-#taked from https://icewizard4902.github.io/Cryptohack/the-matrix-reloaded/
+#taken from https://icewizard4902.github.io/Cryptohack/the-matrix-reloaded/
 
 def solve_dlog(G, H):
     # useful for solving G ^ k = H
