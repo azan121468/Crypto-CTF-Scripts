@@ -16,3 +16,19 @@ def solve_dlog(G, H):
     b12 = h[N - 2][N - 1]
 
     return (a11 * b12 / b11)
+
+
+#simple code block to find x given w = G ^ x * v
+#https://crypto.stackexchange.com/questions/3840/a-discrete-log-like-problem-with-matrices-given-ak-x-find-k
+
+def find_matrix_power(G, v, w):
+    jordan, p_mat = g.jordan_form(transformation=True)
+    lam_bda = list(jordan)[-1][-1]
+    p_inv_v = p_mat.inverse() * v
+    p_inv_w = p_mat.inverse() * w
+    x1, x2 = p_inv_v[-2], p_inv_v[-1]
+    y1, y2 = p_inv_w[-2], p_inv_w[-1]
+    
+    k = lam_bda * (y1 - x1 * y2 / x2) / y2
+
+    return k
