@@ -6,6 +6,7 @@
 
 #taken from https://raw.githubusercontent.com/lwcM/RSA_attack/master/partial_key_exposure_attack.py
 #by following RSA CTF tool source code at https://github.com/RsaCtfTool/RsaCtfTool/blob/b23fc0117610f56a4091a7492c80dc8f14d81beb/sage/partial_d.sage#L49
+#Paper to read: Recovering cryptographic keys from partial information, by example - https://eprint.iacr.org/2020/1506.pdf
 
 from sage.all import *
 
