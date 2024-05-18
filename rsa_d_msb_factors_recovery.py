@@ -52,3 +52,5 @@ d = inverse_mod(e, (p-1)*(q-1))
 print('p =', p)
 print('q =', q)
 print('d =', d)
+
+assert dLow == d & ((1<<dLow.bit_length())-1)
