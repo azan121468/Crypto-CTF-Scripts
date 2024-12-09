@@ -1,4 +1,3 @@
-# ctftools
-My Simple progammed CTF tools + Some hady scripts from others (if any)
+# Crypto CTF Solution Scripts
 
-In this repository i will add some ctf scripts which are useful in crypto(graphy) ctf.
+This repo contains solutions to some common cryptography CTF problems.
