@@ -1,6 +1,5 @@
-#copied from: https://github.com/jvdsn/crypto-attacks/blob/master/attacks/rsa/lsb_oracle.py
-#not sure why this script always fail to return the last byte correct.
-#from my testing, each time it recover the whole plaintext but last byte is always incorrect
+#copied from: https://github.com/jvdsn/crypto-attacks/blob/master/attacks/rsa/lsb_oracle.py and modified a bit.
+#Since last byte returned by the oracle is wrong, we will bruteforce it locally.
 
 def attack(N, e, c, oracle):
     """
@@ -22,3 +21,23 @@ def attack(N, e, c, oracle):
             left = (right + left) // 2
 
     return int(right)
+
+def lsb_oracle(ciphertext):
+    #Implement this according to scenario
+    raise NotImplementedError
+
+n = ...
+e = ...
+c = ...
+
+pt = attack(n, e, c, lsb_oracle)
+#since last byte is not correct, we will bruteforce it locally 
+for i in range(0xff+1):
+    pt = pt >> 8 << 8 | i
+    if pow(pt, e, n) == c:
+        print(f'Found: {pt}')
+        break
+else:
+    #this shouldn't be reachable. Just added this condition if it did
+    print(f'pt: {pt}')
+    breakpoint()
