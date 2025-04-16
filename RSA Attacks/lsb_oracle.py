@@ -2,6 +2,9 @@
 #Since last byte returned by the oracle is wrong, we will bruteforce it locally.
 
 def attack(N, e, c, oracle):
+    def lsb_oracle(ciphertext):
+        #Implement this according to scenario
+        raise NotImplementedError
     """
     Recovers the plaintext from the ciphertext using the LSB oracle (parity oracle) attack.
     :param N: the modulus
@@ -22,9 +25,37 @@ def attack(N, e, c, oracle):
 
     return int(right)
 
-def lsb_oracle(ciphertext):
-    #Implement this according to scenario
-    raise NotImplementedError
+def attack2(n, e, c, oracle):
+    # This code was use to solve Challenge "Twin Oracles" from HTB Cyber Apoclypse 2025
+    # Original Code and Solution can be found at: 
+    # https://github.com/hackthebox/cyber-apocalypse-2025/tree/main/crypto/Twin%20Oracles
+    # Adding here just for reference
+    def is_lsb_oracle():
+        raise NotImplementedError
+
+    low, high = 0, n - 1
+    i = 0
+
+    while high - low > 1:
+        mid = (low + high) // 2
+        if is_lsb_oracle():   # LSB: dec(c) % 2 == 0
+            r = 1 << (i + 1)
+            cc = (c * pow(r, e, n)) % n
+            if oracle(cc) == 0:
+                high = mid
+            else:
+                low = mid
+        else:                  # dec > (n//2)
+            r = 1 << i
+            cc = (c * pow(r, e, n)) % n
+            if oracle(cc) == 0:
+                high = mid
+            else:
+                low = mid
+        print(low, high)
+        i += 1
+    
+    return low
 
 n = ...
 e = ...
